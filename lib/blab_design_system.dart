@@ -17,3 +17,4 @@ export 'src/widgets/pressable_wrapper.dart';
 export 'src/widgets/blab_snackbar.dart';
 export 'src/widgets/liquid_glass_tab_bar.dart';
 export 'src/widgets/blab_segmented_control.dart';
+export 'src/widgets/keyboard_accessory_bar.dart';

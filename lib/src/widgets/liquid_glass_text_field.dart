@@ -8,8 +8,10 @@ class BLabTextField extends StatefulWidget {
   final String? hintText;
   final bool readOnly;
   final bool obscureText;
+  final bool autofocus;
   final VoidCallback? onTap;
   final Widget? suffixIcon;
+  final FocusNode? focusNode;
   final int maxLines;
 
   const BLabTextField({
@@ -19,8 +21,10 @@ class BLabTextField extends StatefulWidget {
     this.hintText,
     this.readOnly = false,
     this.obscureText = false,
+    this.autofocus = false,
     this.onTap,
     this.suffixIcon,
+    this.focusNode,
     this.maxLines = 1,
   });
 
@@ -98,8 +102,10 @@ class _BLabTextFieldState extends State<BLabTextField> {
               ),
               child: TextField(
                 controller: widget.controller,
+                focusNode: widget.focusNode,
                 readOnly: widget.readOnly,
                 obscureText: widget.obscureText,
+                autofocus: widget.autofocus,
                 onTap: widget.onTap,
                 maxLines: widget.obscureText ? 1 : widget.maxLines,
                 style: TextStyle(color: textColor, fontSize: 16),
