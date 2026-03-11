@@ -61,6 +61,7 @@ class BLabTabBar extends StatelessWidget implements PreferredSizeWidget {
     this.labelStyle,
     this.unselectedLabelStyle,
     this.isScrollable = false,
+    this.onTap,
     this.dividerColor,
   });
 
