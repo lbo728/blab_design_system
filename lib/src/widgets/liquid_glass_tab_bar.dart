@@ -47,6 +47,9 @@ class BLabTabBar extends StatelessWidget implements PreferredSizeWidget {
   /// Optional callback when a tab is tapped.
   final ValueChanged<int>? onTap;
 
+  /// Color of the bottom divider. Defaults to `Colors.transparent`.
+  final Color? dividerColor;
+
   const BLabTabBar({
     super.key,
     required this.controller,
@@ -58,7 +61,7 @@ class BLabTabBar extends StatelessWidget implements PreferredSizeWidget {
     this.labelStyle,
     this.unselectedLabelStyle,
     this.isScrollable = false,
-    this.onTap,
+    this.dividerColor,
   });
 
   @override
@@ -80,7 +83,7 @@ class BLabTabBar extends StatelessWidget implements PreferredSizeWidget {
       unselectedLabelStyle:
           unselectedLabelStyle ??
           const TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
-      dividerColor: Colors.transparent,
+      dividerColor: dividerColor ?? Colors.transparent,
       onTap: onTap,
       tabs: tabs.map((tab) => Tab(text: tab)).toList(),
     );
