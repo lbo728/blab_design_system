@@ -219,8 +219,9 @@ class _BLabBottomBarState extends State<BLabBottomBar>
       return content;
     }
 
+    final bottomPadding = MediaQuery.of(context).viewPadding.bottom;
     return Container(
-      margin: const EdgeInsets.only(left: 12, right: 12, bottom: 22),
+      margin: EdgeInsets.only(left: 12, right: 12, bottom: bottomPadding > 0 ? bottomPadding : 22),
       child: content,
     );
   }
