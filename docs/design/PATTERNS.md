@@ -23,6 +23,7 @@ Avoid excessive animation.
 
 ## Error States
 Errors should be specific, actionable, and visually distinct without becoming alarming by default.
+Do not rely on color or visual emphasis alone; include clear text guidance and recovery actions, and provide non-visual signals for accessibility and assistive technologies where appropriate.
 
 ## Confirmation Flows
 Use confirmation only when the action has meaningful consequence.

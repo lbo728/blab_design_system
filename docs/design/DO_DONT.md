@@ -1,4 +1,4 @@
-# DO_DONT.md
+# Do / Don't Guidelines
 
 ## Do
 - Use semantic tokens before raw values.
