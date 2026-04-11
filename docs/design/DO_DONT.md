@@ -15,29 +15,29 @@
 - Do not trade clarity for novelty.
 
 ## Color Usage
-Do prefer semantic role-based color.
-Do not assign colors only for visual variety.
+- Do prefer semantic role-based color.
+- Do not assign colors only for visual variety.
 
 ## Spacing Usage
-Do use a predictable spacing system.
-Do not compress layouts until hierarchy disappears.
+- Do use a predictable spacing system.
+- Do not compress layouts until hierarchy disappears.
 
 ## Component Grouping
-Do create groups through spacing, alignment, and surface relationships.
-Do not depend on excessive borders for every separation.
+- Do create groups through spacing, alignment, and surface relationships.
+- Do not depend on excessive borders for every separation.
 
 ## Typography Hierarchy
-Do express importance through clear scale and role.
-Do not mix too many text emphases in the same area.
+- Do express importance through clear scale and role.
+- Do not mix too many text emphases in the same area.
 
 ## Feedback and Status
-Do make status readable and actionable.
-Do not create alarming visual feedback for low-severity states.
+- Do make status readable and actionable.
+- Do not create alarming visual feedback for low-severity states.
 
 ## Motion
-Do use motion to reinforce interaction and continuity.
-Do not let motion slow down core tasks.
+- Do use motion to reinforce interaction and continuity.
+- Do not let motion slow down core tasks.
 
 ## Accessibility
-Do treat accessibility as a baseline requirement.
-Do not hide or weaken focus, readability, or clarity for stylistic reasons.
+- Do treat accessibility as a baseline requirement.
+- Do not hide or weaken focus, readability, or clarity for stylistic reasons.
