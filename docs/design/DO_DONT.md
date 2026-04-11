@@ -1,4 +1,4 @@
-# Do / Don't Guidelines
+# Do's and Don'ts for Contributors
 
 ## Do
 - Use semantic tokens before raw values.
