@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../theme/app_motion.dart';
+
 class BLabPressableWrapper extends StatefulWidget {
   final Widget child;
   final VoidCallback onTap;
@@ -17,7 +19,7 @@ class BLabPressableWrapper extends StatefulWidget {
     this.onLongPress,
     this.scaleEnd = 0.96,
     this.brightnessEnd = 0.1,
-    this.animationDuration = const Duration(milliseconds: 150),
+    this.animationDuration = BLabMotion.durPress,
     this.enableHaptic = true,
   });
 

@@ -3,6 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../theme/app_glass.dart';
+import '../theme/app_radius.dart';
+import '../theme/app_spacing.dart';
 import 'pressable_wrapper.dart';
 
 class BLabCard extends StatelessWidget {
@@ -22,26 +25,16 @@ class BLabCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    final glassColor = isDark
-        ? Colors.white.withValues(alpha: 0.12)
-        : Colors.black.withValues(alpha: 0.08);
-
-    final borderColor = isDark
-        ? Colors.white.withValues(alpha: 0.15)
-        : Colors.black.withValues(alpha: 0.08);
-
     final cardContent = ClipRRect(
-      borderRadius: borderRadius ?? BorderRadius.circular(16),
+      borderRadius: borderRadius ?? BLabRadius.lgRect,
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 25, sigmaY: 25),
+        filter: ImageFilter.blur(sigmaX: BLabGlass.blur, sigmaY: BLabGlass.blur),
         child: Container(
-          padding: padding ?? const EdgeInsets.all(20),
+          padding: padding ?? EdgeInsets.all(BLabSpacing.lg),
           decoration: BoxDecoration(
-            color: glassColor,
-            borderRadius: borderRadius ?? BorderRadius.circular(16),
-            border: Border.all(color: borderColor, width: 0.5),
+            color: BLabGlass.fill(context),
+            borderRadius: borderRadius ?? BLabRadius.lgRect,
+            border: Border.all(color: BLabGlass.border(context), width: 0.5),
           ),
           child: child,
         ),
