@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
+import '../theme/app_typography.dart';
 
 /// A Liquid Glass–styled tab bar for in-screen tab switching.
 ///
@@ -80,10 +81,10 @@ class BLabTabBar extends StatelessWidget implements PreferredSizeWidget {
       indicatorWeight: indicatorWeight,
       labelStyle:
           labelStyle ??
-          const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+          BLabTypography.label.copyWith(fontWeight: FontWeight.w600),
       unselectedLabelStyle:
           unselectedLabelStyle ??
-          const TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+          BLabTypography.label.copyWith(fontWeight: FontWeight.w400),
       dividerColor: dividerColor ?? Colors.transparent,
       onTap: onTap,
       tabs: tabs.map((tab) => Tab(text: tab)).toList(),

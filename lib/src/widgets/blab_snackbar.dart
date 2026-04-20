@@ -1,6 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
+import '../theme/app_motion.dart';
+import '../theme/app_radius.dart';
+import '../theme/app_spacing.dart';
+
 enum BLabSnackbarType { success, error, info, warning }
 
 class BLabSnackbar {
@@ -72,7 +76,7 @@ class _AnimatedSnackbarState extends State<_AnimatedSnackbar>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 300),
+      duration: BLabMotion.durSurface,
     );
 
     _slideAnimation = Tween<Offset>(
@@ -159,13 +163,14 @@ class _AnimatedSnackbarState extends State<_AnimatedSnackbar>
           child: Material(
             color: Colors.transparent,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BLabRadius.lgRect,
               child: BackdropFilter(
+                // Snackbar uses 20px blur (deviation from BLabGlass.blur=25) — intentional softer feel.
                 filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 16,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: BLabSpacing.lg,
+                    vertical: BLabSpacing.md,
                   ),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -173,7 +178,7 @@ class _AnimatedSnackbarState extends State<_AnimatedSnackbar>
                       end: Alignment.bottomRight,
                       colors: gradientColors,
                     ),
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BLabRadius.lgRect,
                     border: Border.all(
                       color: borderColor,
                       width: borderWidth,
@@ -191,7 +196,7 @@ class _AnimatedSnackbarState extends State<_AnimatedSnackbar>
                   child: Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.all(2),
+                        padding: EdgeInsets.all(BLabSpacing.xs),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(

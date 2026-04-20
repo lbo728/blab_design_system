@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../theme/app_colors.dart';
+import '../theme/app_glass.dart';
+import '../theme/app_radius.dart';
+import '../theme/app_spacing.dart';
+import '../theme/app_typography.dart';
 import 'pressable_wrapper.dart';
 
 enum BLabButtonVariant { primary, secondary, destructive }
@@ -43,28 +47,24 @@ class BLabButton extends StatelessWidget {
         textColor = Colors.white;
         break;
       case BLabButtonVariant.secondary:
-        backgroundColor = isDark
-            ? Colors.white.withValues(alpha: 0.12)
-            : Colors.black.withValues(alpha: 0.08);
+        backgroundColor = BLabGlass.fill(context);
         textColor = isDark ? Colors.white : Colors.black;
         break;
     }
 
     final content = ClipRRect(
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BLabRadius.mdRect,
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 25, sigmaY: 25),
+        filter: ImageFilter.blur(sigmaX: BLabGlass.blur, sigmaY: BLabGlass.blur),
         child: Container(
           width: isFullWidth ? double.infinity : null,
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
           decoration: BoxDecoration(
             color: backgroundColor,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BLabRadius.mdRect,
             border: Border.all(
               color: variant == BLabButtonVariant.secondary
-                  ? (isDark
-                        ? Colors.white.withValues(alpha: 0.15)
-                        : Colors.black.withValues(alpha: 0.08))
+                  ? BLabGlass.border(context)
                   : Colors.transparent,
               width: 0.5,
             ),
@@ -77,15 +77,11 @@ class BLabButton extends StatelessWidget {
                 children: [
                   if (icon != null) ...[
                     Icon(icon, color: textColor, size: 20),
-                    const SizedBox(width: 8),
+                    SizedBox(width: BLabSpacing.sm),
                   ],
                   Text(
                     text,
-                    style: TextStyle(
-                      color: textColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: BLabTypography.button.copyWith(color: textColor),
                   ),
                 ],
               ),
