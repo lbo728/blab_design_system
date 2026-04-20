@@ -2,6 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import '../theme/app_glass.dart';
+import '../theme/app_radius.dart';
+import '../theme/app_spacing.dart';
+import '../theme/app_typography.dart';
+
 class BLabTextField extends StatefulWidget {
   final TextEditingController controller;
   final String? label;
@@ -63,14 +68,6 @@ class _BLabTextFieldState extends State<BLabTextField> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    final glassColor = isDark
-        ? Colors.white.withValues(alpha: 0.12)
-        : Colors.black.withValues(alpha: 0.08);
-
-    final borderColor = isDark
-        ? Colors.white.withValues(alpha: 0.15)
-        : Colors.black.withValues(alpha: 0.08);
-
     final textColor = isDark ? Colors.white : Colors.black;
     final hintColor = isDark
         ? Colors.white.withValues(alpha: 0.5)
@@ -82,23 +79,21 @@ class _BLabTextFieldState extends State<BLabTextField> {
         if (widget.label != null) ...[
           Text(
             widget.label!,
-            style: TextStyle(
+            style: BLabTypography.label.copyWith(
               color: textColor.withValues(alpha: 0.7),
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: BLabSpacing.sm),
         ],
         ClipRRect(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BLabRadius.mdRect,
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 25, sigmaY: 25),
+            filter: ImageFilter.blur(sigmaX: BLabGlass.blur, sigmaY: BLabGlass.blur),
             child: Container(
               decoration: BoxDecoration(
-                color: glassColor,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: borderColor, width: 0.5),
+                color: BLabGlass.fill(context),
+                borderRadius: BLabRadius.mdRect,
+                border: Border.all(color: BLabGlass.border(context), width: 0.5),
               ),
               child: TextField(
                 controller: widget.controller,

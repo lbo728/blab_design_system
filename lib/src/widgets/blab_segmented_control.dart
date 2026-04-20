@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
+import '../theme/app_motion.dart';
+import '../theme/app_radius.dart';
 
 /// An item for [BLabSegmentedControl].
 class BLabSegmentedItem<T> {
@@ -31,7 +33,7 @@ class BLabSegmentedControl<T> extends StatelessWidget {
   /// Height of the control. Defaults to 40.
   final double height;
 
-  /// Border radius of the outer container. Defaults to 10.
+  /// Border radius of the outer container. Defaults to [BLabRadius.sm] (10).
   final double borderRadius;
 
   /// Padding inside the outer container. Defaults to 3.
@@ -43,7 +45,7 @@ class BLabSegmentedControl<T> extends StatelessWidget {
     required this.selectedValue,
     required this.onChanged,
     this.height = 40,
-    this.borderRadius = 10,
+    this.borderRadius = BLabRadius.sm,
     this.padding = 3,
   });
 
@@ -69,7 +71,7 @@ class BLabSegmentedControl<T> extends StatelessWidget {
             child: GestureDetector(
               onTap: () => onChanged(item.value),
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 180),
+                duration: BLabMotion.durSegment,
                 decoration: BoxDecoration(
                   color: isSelected
                       ? (isDark ? const Color(0xFF2C2C2E) : Colors.white)

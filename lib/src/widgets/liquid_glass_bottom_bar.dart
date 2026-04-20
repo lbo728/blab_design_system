@@ -4,6 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../theme/app_glass.dart';
+import '../theme/app_motion.dart';
+import '../theme/app_radius.dart';
+import '../theme/app_spacing.dart';
+import '../theme/app_typography.dart';
+
 /// Liquid Glass 스타일 탭 아이템 정의
 ///
 /// [BLabBottomBar]에 전달할 탭 항목을 정의합니다.
@@ -111,7 +117,7 @@ class _BLabBottomBarState extends State<BLabBottomBar>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 300),
+      duration: BLabMotion.durSurface,
       vsync: this,
     );
     _slideAnimation = Tween<double>(
@@ -229,14 +235,6 @@ class _BLabBottomBarState extends State<BLabBottomBar>
   /// Liquid Glass 효과가 적용된 TabBar
   Widget _buildLiquidGlassTabBar(bool isDark) {
     // HIG 적응형 색상
-    final glassColor = isDark
-        ? Colors.white.withValues(alpha: 0.12)
-        : Colors.black.withValues(alpha: 0.08);
-
-    final borderColor = isDark
-        ? Colors.white.withValues(alpha: 0.15)
-        : Colors.black.withValues(alpha: 0.08);
-
     final foregroundColor = isDark ? Colors.white : Colors.black;
     final inactiveForegroundColor = isDark
         ? Colors.white.withValues(alpha: 0.5)
@@ -247,16 +245,16 @@ class _BLabBottomBarState extends State<BLabBottomBar>
       onLongPressMoveUpdate: _onLongPressMoveUpdate,
       onLongPressEnd: _onLongPressEnd,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BLabRadius.pillRect,
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 25, sigmaY: 25),
+          filter: ImageFilter.blur(sigmaX: BLabGlass.blur, sigmaY: BLabGlass.blur),
           child: Container(
             height: 62,
-            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+            padding: EdgeInsets.all(BLabSpacing.s2),
             decoration: BoxDecoration(
-              color: glassColor,
-              borderRadius: BorderRadius.circular(100),
-              border: Border.all(color: borderColor, width: 0.5),
+              color: BLabGlass.fill(context),
+              borderRadius: BLabRadius.pillRect,
+              border: Border.all(color: BLabGlass.border(context), width: 0.5),
             ),
             child: LayoutBuilder(
               builder: (context, constraints) {
@@ -324,7 +322,7 @@ class _BLabBottomBarState extends State<BLabBottomBar>
               width: tabWidth - 8,
               height: 54,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
+                borderRadius: BLabRadius.pillRect,
                 // 물방울 렌즈 효과: 그라디언트로 굴절 시뮬레이션
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
@@ -351,7 +349,7 @@ class _BLabBottomBarState extends State<BLabBottomBar>
               // 내부 하이라이트 (상단 반사광)
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BLabRadius.pillRect,
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.center,
@@ -432,7 +430,7 @@ class _BLabBottomBarState extends State<BLabBottomBar>
             children: [
               if (showArrow)
                 Padding(
-                  padding: const EdgeInsets.only(right: 4),
+                  padding: EdgeInsets.only(right: BLabSpacing.s2),
                   child: Icon(
                     CupertinoIcons.chevron_up_chevron_down,
                     color: iconColor,
@@ -446,12 +444,11 @@ class _BLabBottomBarState extends State<BLabBottomBar>
               ),
             ],
           ),
-          const SizedBox(height: 2),
+          SizedBox(height: BLabSpacing.xs),
           Text(
             tab.label,
-            style: TextStyle(
+            style: BLabTypography.tab.copyWith(
               color: iconColor,
-              fontSize: 10,
               fontWeight: isHighlighted ? FontWeight.w600 : FontWeight.w500,
             ),
           ),
@@ -462,15 +459,6 @@ class _BLabBottomBarState extends State<BLabBottomBar>
 
   /// 분리된 원형 액션 버튼 (Liquid Glass 효과)
   Widget _buildSearchButton(bool isDark) {
-    // 탭바와 동일한 색상
-    final glassColor = isDark
-        ? Colors.white.withValues(alpha: 0.12)
-        : Colors.black.withValues(alpha: 0.08);
-
-    final borderColor = isDark
-        ? Colors.white.withValues(alpha: 0.15)
-        : Colors.black.withValues(alpha: 0.08);
-
     final iconColor = isDark
         ? Colors.white.withValues(alpha: 0.9)
         : Colors.black.withValues(alpha: 0.7);
@@ -490,16 +478,16 @@ class _BLabBottomBarState extends State<BLabBottomBar>
         }
       },
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BLabRadius.pillRect,
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 25, sigmaY: 25),
+          filter: ImageFilter.blur(sigmaX: BLabGlass.blur, sigmaY: BLabGlass.blur),
           child: Container(
             width: 62,
             height: 62,
             decoration: BoxDecoration(
-              color: glassColor,
-              borderRadius: BorderRadius.circular(100),
-              border: Border.all(color: borderColor, width: 0.5),
+              color: BLabGlass.fill(context),
+              borderRadius: BLabRadius.pillRect,
+              border: Border.all(color: BLabGlass.border(context), width: 0.5),
             ),
             child: Icon(widget.actionIcon ?? CupertinoIcons.search, color: iconColor, size: 22),
           ),

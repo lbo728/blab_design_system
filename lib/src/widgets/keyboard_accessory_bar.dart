@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../theme/app_radius.dart';
+import '../theme/app_spacing.dart';
+
 class BLabKeyboardAccessoryBar extends StatefulWidget {
   final VoidCallback onDone;
   final bool isDark;
@@ -118,10 +121,11 @@ class _BLabKeyboardAccessoryBarState extends State<BLabKeyboardAccessoryBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: BLabSpacing.md, vertical: BLabSpacing.sm),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BLabRadius.pillRect,
         child: BackdropFilter(
+          // Keyboard bar uses 20px blur (deviation from BLabGlass.blur=25) — softer feel for keyboard overlay.
           filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
           child: Container(
             decoration: BoxDecoration(
@@ -133,7 +137,7 @@ class _BLabKeyboardAccessoryBarState extends State<BLabKeyboardAccessoryBar> {
                   Colors.white.withValues(alpha: widget.isDark ? 0.08 : 0.3),
                 ],
               ),
-              borderRadius: BorderRadius.circular(100),
+              borderRadius: BLabRadius.pillRect,
               border: Border.all(
                 color: Colors.white.withValues(
                   alpha: widget.isDark ? 0.2 : 0.4,
